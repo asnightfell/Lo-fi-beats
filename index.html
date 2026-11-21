@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KOMOREBI SP-404X — Lo-Fi Beat Studio</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <main class="chassis">
+    <!-- Top Header & Master Transport -->
+    <header class="top-bar">
+      <div class="brand">
+        <span class="brand-badge">SP-404X</span>
+        <div>
+          <h1>KOMOREBI</h1>
+          <p class="subtitle">LO-FI TAPE SAMPLER & SYNTH</p>
+        </div>
+      </div>
+
+      <div class="transport-controls">
+        <button id="play-btn" class="btn btn-primary" aria-label="Play or Pause">
+          <span class="led"></span>
+          <span id="play-label">PLAY</span>
+        </button>
+        <button id="stop-btn" class="btn" aria-label="Stop">STOP</button>
+
+        <div class="knob-group">
+          <label for="bpm-slider">BPM <span id="bpm-val">78</span></label>
+          <input type="range" id="bpm-slider" min="60" max="110" value="78" />
+        </div>
+
+        <div class="knob-group">
+          <label for="swing-slider">SWING <span id="swing-val">28%</span></label>
+          <input type="range" id="swing-slider" min="0" max="60" value="28" />
+        </div>
+
+        <div class="knob-group">
+          <label for="filter-slider">WARM LPF <span id="filter-val">2.4kHz</span></label>
+          <input type="range" id="filter-slider" min="350" max="12000" value="2400" />
+        </div>
+      </div>
+    </header>
+
+    <!-- Middle Section: CRT Visualizer & Tape Ambience -->
+    <section class="mid-deck">
+      <div class="crt-frame">
+        <div class="crt-header">
+          <span>MASTER BUS // CRT-01</span>
+          <div class="viz-modes">
+            <button class="viz-btn active" data-mode="dual">DUAL</button>
+            <button class="viz-btn" data-mode="wave">WAVE</button>
+            <button class="viz-btn" data-mode="spec">SPEC</button>
+          </div>
+        </div>
+        <canvas id="visualizer" width="560" height="150"></canvas>
+      </div>
+
+      <div class="fx-rack">
+        <h2>TAPE & TEXTURE</h2>
+        <div class="fx-row">
+          <button id="vinyl-toggle" class="fx-btn active">
+            <span class="led"></span> VINYL CRACKLE
+          </button>
+          <input type="range" id="vinyl-vol" min="0" max="1" step="0.01" value="0.35" title="Vinyl Level" />
+        </div>
+
+        <div class="fx-row">
+          <button id="rain-toggle" class="fx-btn">
+            <span class="led"></span> WINDOW RAIN
+          </button>
+          <input type="range" id="rain-vol" min="0" max="1" step="0.01" value="0.25" title="Rain Level" />
+        </div>
+
+        <div class="fx-row">
+          <button id="flutter-toggle" class="fx-btn active">
+            <span class="led"></span> WOW & FLUTTER
+          </button>
+          <input type="range" id="flutter-depth" min="0" max="1" step="0.01" value="0.45" title="Tape Warble Depth" />
+        </div>
+
+        <div class="fx-row">
+          <label for="master-vol" class="fx-label">MASTER OUT</label>
+          <input type="range" id="master-vol" min="0" max="1" step="0.01" value="0.8" />
+        </div>
+      </div>
+    </section>
+
+    <!-- Chord Pad Synthesizer -->
+    <section class="pad-section">
+      <div class="section-header">
+        <h2>WARM RHODES CHORD PADS <span class="hint">(Keys: A S D F G H or 1–6)</span></h2>
+        <div class="pad-actions">
+          <button id="auto-prog-btn" class="fx-btn active">
+            <span class="led"></span> AUTO PROG
+          </button>
+          <select id="prog-select" aria-label="Chord Progression Preset">
+            <option value="midnight">Rainy Midnight (Fmaj9 - Em7 - Dm9 - Cmaj9)</option>
+            <option value="kyoto">Kyoto Station (Dm9 - G13sus - Cmaj9 - Am11)</option>
+            <option value="nostalgia">Cassette Loop (Fmaj9 - Am11 - Dm9 - G13sus)</option>
+          </select>
+        </div>
+      </div>
+      <div id="chord-pads" class="chord-grid"></div>
+    </section>
+
+    <!-- 16-Step Drum Sequencer -->
+    <section class="sequencer-section">
+      <div class="section-header">
+        <h2>16-STEP DRUM SEQUENCER</h2>
+        <div class="seq-actions">
+          <button id="preset-btn" class="btn btn-sm">VARIATION</button>
+          <button id="clear-btn" class="btn btn-sm">CLEAR</button>
+        </div>
+      </div>
+      <div id="step-indicators" class="step-led-row"></div>
+      <div id="sequencer-grid" class="sequencer-grid"></div>
+    </section>
+  </main>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
